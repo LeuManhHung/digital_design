@@ -32,7 +32,7 @@ initial begin
 	rd_en = 1'b0;
 	wr_data = 8'h00;
 	#20;
-	rst_n = 1'b0;
+	rst_n = 1'b1;
 	#10;
 	// Sau reset
 	$display("FIFO rong, count = %0d", count);
@@ -45,10 +45,9 @@ initial begin
    wr_data = 8'h33;
    @(posedge clk);
    wr_en   = 1'b0; // tat ghi
+    rd_en   = 1'b1;
    $display("Sau khi ghi | count = %0d", count);
 	// Doc ra
-    @(posedge clk);
-    rd_en   = 1'b1;
     @(posedge clk);
     rd_en   = 1'b0; // Tắt doc
     $display("rd_data = %h | count = %0d", rd_data, count);
